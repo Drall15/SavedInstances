@@ -14,6 +14,29 @@ local GetSpellInfo = GetSpellInfo
 local LOOT = LOOT
 
 local _specialQuests = {
+
+    --Vale of Eternal Blossoms and Uldum Assaults
+    [56064] = { zid=1530, weekly=true}, -- Black Empire Assault in Vale
+    [57728] = { zid=1530, weekly=true}, -- Mantid Assault in Vale
+    [57008] = { zid=1530, weekly=true}, -- Mogu Assault in Vale
+    
+    [57157] = { zid=1527, weekly=true}, -- Black Empire Assault in Uldum
+    [55350] = { zid=1527, weekly=true}, -- Amathet Assault in Uldum
+    [56308] = { zid=1527, weekly=true}, -- Aqir Assault in Uldum
+    
+    --Vale and Uldum Minor Vision Quests
+    [58168] = { zid=1530, daily=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1530, daily=true}, -- A Hand in the Dark
+    [58151] = { zid=1530, daily=true}, -- Minions of N'Zoth
+    [58167] = { zid=1530, daily=true}, -- Preventative Measures
+    [58156] = { zid=1530, daily=true}, -- Vanquishing the Darkness
+    
+    [58168] = { zid=1527, daily=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1527, daily=true}, -- A Hand in the Dark
+    [58151] = { zid=1527, daily=true}, -- Minions of N'Zoth
+    [58167] = { zid=1527, daily=true}, -- Preventative Measures
+    [58156] = { zid=1527, daily=true}, -- Vanquishing the Darkness  
+    
   -- Isle of Thunder
   [32610] = { zid=504, lid=94221 }, -- Shan'ze Ritual Stone looted
   [32611] = { zid=504, lid1=95350 },-- Incantation of X looted
