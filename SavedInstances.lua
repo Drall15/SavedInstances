@@ -1916,14 +1916,17 @@ hoverTooltip.ShowQuestTooltip = function (cell, arg, ...)
       if not link then -- sometimes missing the actual link due to races, fake it for display to prevent confusion
         if qi.Title:find("("..LOOT..")") then
           link = qi.Title
+        else
+          link = "\124cffffff00["..(qi.Title or "???").."]\124r"
+        end
       else
-        link = "\124cffffff00["..(qi.Title or "???").."]\124r"
-      end
+        local ntitle=addon:normalizeLesserVision(id)
+        if ntitle then
+          link = "\124cffFF4500["..ntitle.."]\124r"
+        end    
+      
     end
-    local ntitle=addon:normalizeLesserVision(id)
-    if ntitle then
-      link = "\124cffFF4500["..ntitle.."]\124r"
-    end
+    
     -- Exception: Some quests should not show zone name, such as Blingtron
     if (id == 31752 or id == 34774 or id == 40753 or id == 56042) then
       zonename = ""

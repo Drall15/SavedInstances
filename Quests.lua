@@ -81,15 +81,6 @@ local _specialQuests = {
   [47463] = { daily=true, name=L["Dragon of Nightmare"] },  -- Dragon of Nightmare
 }
 
-function addon:normalizeLesserVision(qid)
-  if _specialQuests[qid] then
-    if _specialQuests[qid].lvision then
-        print("This quest is a lesser vision")
-        return("Lesser Vision")
-    end
-    return nil
-  end
-end
 
 function addon:specialQuests()
   for qid, qinfo in pairs(_specialQuests) do
@@ -129,14 +120,27 @@ function addon:specialQuests()
         qinfo.name = title
       end
     end
-
+  end
     if not qinfo.zone and qinfo.zid then
       qinfo.zone = C_Map_GetMapInfo(qinfo.zid)
     end
-  end
+  
 
   return _specialQuests
 end
+
+
+function addon:normalizeLesserVision(qid)
+  --[[] local squests=_specialQuests
+  if squests[qid] then
+    if squests[qid].lvision then
+        return("Lesser Vision")
+    end
+    return nil
+  end --]]
+  return nil
+end 
+
 
 local QuestExceptions = {
   -- Expansion
