@@ -25,17 +25,17 @@ local _specialQuests = {
     [56308] = { zid=1527, weekly=true}, -- Aqir Assault in Uldum
     
     --Vale and Uldum Minor Vision Quests
-    [58168] = { zid=1530, daily=true}, -- Dark, Glaring Reality
-    [58155] = { zid=1530, daily=true}, -- A Hand in the Dark
-    [58151] = { zid=1530, daily=true}, -- Minions of N'Zoth
-    [58167] = { zid=1530, daily=true}, -- Preventative Measures
-    [58156] = { zid=1530, daily=true}, -- Vanquishing the Darkness
+    [58168] = { zid=1530, daily=true, lvision=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1530, daily=true, lvision=true}, -- A Hand in the Dark
+    [58151] = { zid=1530, daily=true, lvision=true}, -- Minions of N'Zoth
+    [58167] = { zid=1530, daily=true, lvision=true}, -- Preventative Measures
+    [58156] = { zid=1530, daily=true, lvision=true}, -- Vanquishing the Darkness
     
-    [58168] = { zid=1527, daily=true}, -- Dark, Glaring Reality
-    [58155] = { zid=1527, daily=true}, -- A Hand in the Dark
-    [58151] = { zid=1527, daily=true}, -- Minions of N'Zoth
-    [58167] = { zid=1527, daily=true}, -- Preventative Measures
-    [58156] = { zid=1527, daily=true}, -- Vanquishing the Darkness  
+    [58168] = { zid=1527, daily=true, lvision=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1527, daily=true, lvision=true}, -- A Hand in the Dark
+    [58151] = { zid=1527, daily=true, lvision=true}, -- Minions of N'Zoth
+    [58167] = { zid=1527, daily=true, lvision=true}, -- Preventative Measures
+    [58156] = { zid=1527, daily=true}, lvision=true, -- Vanquishing the Darkness  
     
   -- Isle of Thunder
   [32610] = { zid=504, lid=94221 }, -- Shan'ze Ritual Stone looted
@@ -80,6 +80,16 @@ local _specialQuests = {
   [47462] = { daily=true, name=L["Azuregos"] },             -- Azuregos
   [47463] = { daily=true, name=L["Dragon of Nightmare"] },  -- Dragon of Nightmare
 }
+
+function addon:normalizeLesserVision(qid)
+  if _specialQuests[qid] then
+    if _specialQuests[qid].lvision then
+        print("This quest is a lesser vision")
+        return("Lesser Vision")
+    end
+    return nil
+  end
+end
 
 function addon:specialQuests()
   for qid, qinfo in pairs(_specialQuests) do
