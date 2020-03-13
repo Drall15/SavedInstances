@@ -13,6 +13,21 @@ local GetItemInfo = GetItemInfo
 local GetSpellInfo = GetSpellInfo
 local LOOT = LOOT
 
+local _lesserVisionQuests = {
+      --Vale and Uldum Minor Vision Quests
+      [58168] = true,
+      [58155] = true,
+      [58151] = true,
+      [58167] = true,
+      [58156] = true,
+      
+      [58168] = true,
+      [58155] = true,
+      [58151] = true,
+      [58167] = true,
+      [58156] = true
+}
+
 local _specialQuests = {
 
     --Vale of Eternal Blossoms and Uldum Assaults
@@ -25,17 +40,17 @@ local _specialQuests = {
     [56308] = { zid=1527, weekly=true}, -- Aqir Assault in Uldum
     
     --Vale and Uldum Minor Vision Quests
-    [58168] = { zid=1530, daily=true, lvision=true}, -- Dark, Glaring Reality
-    [58155] = { zid=1530, daily=true, lvision=true}, -- A Hand in the Dark
-    [58151] = { zid=1530, daily=true, lvision=true}, -- Minions of N'Zoth
-    [58167] = { zid=1530, daily=true, lvision=true}, -- Preventative Measures
-    [58156] = { zid=1530, daily=true, lvision=true}, -- Vanquishing the Darkness
+    [58168] = { zid=1530, daily=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1530, daily=true}, -- A Hand in the Dark
+    [58151] = { zid=1530, daily=true}, -- Minions of N'Zoth
+    [58167] = { zid=1530, daily=true}, -- Preventative Measures
+    [58156] = { zid=1530, daily=true}, -- Vanquishing the Darkness
     
-    [58168] = { zid=1527, daily=true, lvision=true}, -- Dark, Glaring Reality
-    [58155] = { zid=1527, daily=true, lvision=true}, -- A Hand in the Dark
-    [58151] = { zid=1527, daily=true, lvision=true}, -- Minions of N'Zoth
-    [58167] = { zid=1527, daily=true, lvision=true}, -- Preventative Measures
-    [58156] = { zid=1527, daily=true}, lvision=true, -- Vanquishing the Darkness  
+    [58168] = { zid=1527, daily=true}, -- Dark, Glaring Reality
+    [58155] = { zid=1527, daily=true}, -- A Hand in the Dark
+    [58151] = { zid=1527, daily=true}, -- Minions of N'Zoth
+    [58167] = { zid=1527, daily=true}, -- Preventative Measures
+    [58156] = { zid=1527, daily=true}, -- Vanquishing the Darkness  
     
   -- Isle of Thunder
   [32610] = { zid=504, lid=94221 }, -- Shan'ze Ritual Stone looted
@@ -85,7 +100,6 @@ local _specialQuests = {
 function addon:specialQuests()
   for qid, qinfo in pairs(_specialQuests) do
     qinfo.quest = qid
-
     if not qinfo.name and (qinfo.lid or qinfo.lid1) then
       local itemname, itemlink = GetItemInfo(qinfo.lid or qinfo.lid1)
       if itemlink and qinfo.lid then
@@ -120,25 +134,22 @@ function addon:specialQuests()
         qinfo.name = title
       end
     end
-  end
+  
     if not qinfo.zone and qinfo.zid then
       qinfo.zone = C_Map_GetMapInfo(qinfo.zid)
     end
-  
+  end
 
   return _specialQuests
 end
 
 
 function addon:normalizeLesserVision(qid)
-  --[[] local squests=_specialQuests
-  if squests[qid] then
-    if squests[qid].lvision then
-        return("Lesser Vision")
-    end
-    return nil
-  end --]]
-  return nil
+  if _lesserVisionQuests[qid] then
+    return("Lesser Vision")
+  else
+     return nil
+  end
 end 
 
 
