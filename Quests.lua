@@ -20,12 +20,6 @@ local _lesserVisionQuests = {
       [58151] = true,
       [58167] = true,
       [58156] = true,
-      
-      [58168] = true,
-      [58155] = true,
-      [58151] = true,
-      [58167] = true,
-      [58156] = true
 }
 
 local _specialQuests = {
